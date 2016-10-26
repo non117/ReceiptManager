@@ -7,5 +7,6 @@ target 'ReceiptManager' do
 
   # Pods for ReceiptManager
   pod 'Alamofire', '~> 4.0'
+  pod 'Himotoki', '~> 3.0'
 
 end
