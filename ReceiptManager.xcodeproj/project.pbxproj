@@ -13,6 +13,7 @@
 		F86C6ABA1DABBE6A005F48B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F86C6AB91DABBE6A005F48B1 /* Assets.xcassets */; };
 		F86C6ABD1DABBE6A005F48B1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F86C6ABB1DABBE6A005F48B1 /* Main.storyboard */; };
 		F86C6AC51DABC316005F48B1 /* OCRClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86C6AC41DABC316005F48B1 /* OCRClient.swift */; };
+		F87CDEB11DC08E5400796960 /* AnnotatedResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87CDEB01DC08E5400796960 /* AnnotatedResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		F86C6ABC1DABBE6A005F48B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F86C6ABE1DABBE6A005F48B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F86C6AC41DABC316005F48B1 /* OCRClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OCRClient.swift; path = ../OCRClient.swift; sourceTree = "<group>"; };
+		F87CDEB01DC08E5400796960 /* AnnotatedResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotatedResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				F86C6AC41DABC316005F48B1 /* OCRClient.swift */,
+				F87CDEB01DC08E5400796960 /* AnnotatedResponse.swift */,
 				F86C6AB51DABBE6A005F48B1 /* AppDelegate.swift */,
 				F86C6AB71DABBE6A005F48B1 /* ViewController.swift */,
 				F86C6AB91DABBE6A005F48B1 /* Assets.xcassets */,
@@ -213,6 +216,7 @@
 			files = (
 				F86C6AB81DABBE6A005F48B1 /* ViewController.swift in Sources */,
 				F86C6AB61DABBE6A005F48B1 /* AppDelegate.swift in Sources */,
+				F87CDEB11DC08E5400796960 /* AnnotatedResponse.swift in Sources */,
 				F86C6AC51DABC316005F48B1 /* OCRClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -17,8 +17,8 @@ class ViewController: NSViewController {
         let key = ""
         let path = "/Users/non/Desktop/IMG_3294.JPG"
         let url = NSURL.fileURL(withPath: path)
-        let client = OCRClient.init(api_key: key)
-        client.request(imagePath: url)
+        let client = OCRClient(apiKey: key)
+        let res = client.annotate(imagePath: url)
     }
 
     override var representedObject: Any? {
