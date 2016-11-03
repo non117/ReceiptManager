@@ -7,20 +7,21 @@
 //
 
 import Foundation
-import Alamofire
 
 public struct OCRClient {
     static let HOST = "https://vision.googleapis.com"
     static let ANNOTATE_API = "/v1/images:annotate"
     let apiKey: String
+    let session: URLSession
 
     init(apiKey: String){
         self.apiKey = apiKey
+        self.session = URLSession(configuration: URLSessionConfiguration.default)
     }
 
     // MARK: - main request method
-    func annotate(imageData: Data) -> AnnotatedResponse? {
-        let parameters: Parameters = [
+    func annotate(imageData: Data, responseHandler: @escaping (AnnotatedResponse?) -> Void) {
+        let parameters: [String: Any] = [
             "requests": [
                 "image": [
                     "content": imageData.base64EncodedString()
@@ -34,23 +35,33 @@ public struct OCRClient {
             ]
         ]
 
-        // TODO: NSURLかなにかで結合する
-        let url = OCRClient.HOST + OCRClient.ANNOTATE_API + "?key=" + apiKey
-        //var annotatedResonse: AnnotatedResponse?
-        // TODO: NSURLSessionで書き換える
-        // 非同期実行される可能性があるのでコールバックで値を受け取るべき
-        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseJSON {
-            response in
-            if let json = response.result.value {
-                let annotatedResonse = try? AnnotatedResponse.decodeValue(json)
+        var request = URLRequest(url: url()!)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        request.httpBody = try? JSONSerialization.data(withJSONObject: parameters)
+
+        let task = session.dataTask(with: request, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) in
+            if data != nil {
+                let jsonData = try? JSONSerialization.jsonObject(with: data!)
+                let annotatedResponse = try? AnnotatedResponse.decodeValue(jsonData)
+                responseHandler(annotatedResponse)
             }
-        }
-        return nil//annotatedResonse
+            self.session.invalidateAndCancel()
+        })
+        task.resume()
     }
 
     // MARK: - convenience request
-    func annotate(imagePath: URL) -> AnnotatedResponse? {
+    func annotate(imagePath: URL, responseHandler: @escaping (AnnotatedResponse?) -> Void) {
         let image = try! Data(contentsOf: imagePath)
-        return annotate(imageData: image)
+        annotate(imageData: image, responseHandler: responseHandler)
+    }
+
+    // MARK: - url generation
+    private func url() -> URL? {
+        let queryItem = URLQueryItem(name: "key", value: apiKey)
+        var urlComponents = URLComponents(string: OCRClient.HOST + OCRClient.ANNOTATE_API)
+        urlComponents?.queryItems = [queryItem]
+        return urlComponents?.url
     }
 }
