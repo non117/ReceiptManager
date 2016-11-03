@@ -1,15 +1,12 @@
 PODS:
-  - Alamofire (4.0.1)
   - Himotoki (3.0.0)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.0)
   - Himotoki (~> 3.0)
 
 SPEC CHECKSUMS:
-  Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
   Himotoki: df74b01035e86e021b7b04a15b033a7fd189b84f
 
-PODFILE CHECKSUM: c281080e95cbfc2c4d63509d106074f1976acf54
+PODFILE CHECKSUM: 33ff418902d8c3386f048e6b130f3058dfdd5fab
 
 COCOAPODS: 1.0.1
