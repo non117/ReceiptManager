@@ -10,17 +10,12 @@ import Cocoa
 
 class ViewController: NSViewController {
 
+    @IBOutlet weak var imageView: NSImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        let key = ""
-        let path = "/Users/non/Desktop/IMG_3294.JPG"
-        let url = NSURL.fileURL(withPath: path)
-        let client = OCRClient(apiKey: key)
-        client.annotate(imagePath: url, responseHandler: { (annotatedResponse: AnnotatedResponse?) in
-            print(annotatedResponse)
-        })
+        let imagePath = URL(fileURLWithPath: "/Users/non/Desktop/IMG_0001.JPG")
+        self.imageView.image = NSImage(contentsOf: imagePath)
     }
 
     override var representedObject: Any? {
