@@ -11,6 +11,8 @@ import Cocoa
 class ViewController: NSViewController {
 
     @IBOutlet weak var imageView: NSImageView!
+    @IBOutlet weak var tableView: NSTableView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
