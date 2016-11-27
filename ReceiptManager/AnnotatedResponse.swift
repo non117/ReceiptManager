@@ -32,6 +32,10 @@ public struct Annotation: Decodable {
             text: e <| "description"
         )
     }
+
+    public func toAnnotatedText() -> AnnotatedText {
+        return AnnotatedText(rect: vertices, text: text)
+    }
 }
 
 public struct TextAnnotations: Decodable {
@@ -53,5 +57,9 @@ public struct AnnotatedResponse: Decodable {
         return try AnnotatedResponse(
             responses: e <|| "responses"
         )
+    }
+
+    public func toReceipt() -> Receipt {
+        return Receipt(texts: responses[0].annotations.map { $0.toAnnotatedText() })
     }
 }
