@@ -11,6 +11,8 @@ import Cocoa
 class ViewController: NSViewController {
 
     @IBOutlet weak var imageView: NSImageView!
+    @IBOutlet var receiptController: NSArrayController!
+    var receipt: Receipt!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,10 +20,11 @@ class ViewController: NSViewController {
         let imagePath = URL(fileURLWithPath: "/Users/non/Desktop/IMG_0001.JPG")
         self.imageView.image = NSImage(contentsOf: imagePath)
         
-        //let client = OCRClient(apiKey: "")
-        //client.annotate(imagePath: imagePath, responseHandler: {(res: AnnotatedResponse?) in
-        //    print(res)
-        //})
+        let client = OCRClient(apiKey: "")
+        client.annotate(imagePath: imagePath, responseHandler: {(res: AnnotatedResponse?) in
+            self.receipt = res?.toReceipt()
+            self.receiptController.content = self.receipt.texts
+        })
     }
 
     override var representedObject: Any? {

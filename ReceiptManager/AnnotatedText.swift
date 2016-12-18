@@ -8,11 +8,11 @@
 
 import Foundation
 
-public struct AnnotatedText {
-    let rect: [Point]
-    let text: String
-    let category: String?
-    let available : Bool
+public class AnnotatedText : NSObject {
+    var rect: [Point]
+    dynamic var text: String?
+    dynamic var category: String?
+    var available : Bool
     private let sameThreshold = 10
 
     init(rect: [Point], text: String) {
