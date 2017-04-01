@@ -12,7 +12,6 @@ import Foundation
 public struct AnnotatedText {
     let rect: [Point]
     let text: String
-    private let sameThreshold = 10
     
     var y: Int {
         get {
@@ -34,6 +33,7 @@ public struct AnnotatedText {
 
     // テキスト領域の高さ中心が閾値の範囲で一致していたら同じ行だと判断する
     func isSameLine(rval: AnnotatedText) -> Bool {
+        let sameThreshold = min(rval.fontSize, self.fontSize)
         return abs(rval.y - self.y) <= sameThreshold
     }
 }
