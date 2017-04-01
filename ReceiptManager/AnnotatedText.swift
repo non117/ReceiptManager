@@ -12,28 +12,15 @@ import Foundation
 public struct AnnotatedText {
     let rect: [Point]
     let text: String
-    
-    var horizontalPosition: Int {
-        get {
-            return (self.rect[0].y + self.rect[3].y) / 2
-        }
-    }
-    var fontWidth: Int {
-        get {
-            let width = rect[1].x - rect[0].x
-            let num = text.characters.count
-            return width / num
-        }
-    }
-    var fontHeight: Int {
-        get {
-            return rect[3].y - rect[0].y
-        }
-    }
+    let fontWidth, fontHeight: Int
+    let horizontalPosition: Int
 
     init(rect: [Point], text: String) {
         self.rect = rect
         self.text = text
+        self.fontHeight = rect[3].y - rect[0].y
+        self.fontWidth = (rect[1].x - rect[0].x) / text.characters.count
+        self.horizontalPosition = (self.rect[0].y + self.rect[3].y) / 2
     }
     public func isSameLine(rval: AnnotatedText) -> Bool {
         let minFontHeight = min(rval.fontHeight, self.fontHeight)
