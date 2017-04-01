@@ -13,16 +13,21 @@ public struct AnnotatedText {
     let rect: [Point]
     let text: String
     
-    var y: Int {
+    var horizontalPosition: Int {
         get {
             return (self.rect[0].y + self.rect[3].y) / 2
         }
     }
-    var fontSize: Int {
+    var fontWidth: Int {
         get {
             let width = rect[1].x - rect[0].x
             let num = text.characters.count
             return width / num
+        }
+    }
+    var fontHeight: Int {
+        get {
+            return rect[3].y - rect[0].y
         }
     }
 
@@ -30,10 +35,8 @@ public struct AnnotatedText {
         self.rect = rect
         self.text = text
     }
-
-    // テキスト領域の高さ中心が閾値の範囲で一致していたら同じ行だと判断する
-    func isSameLine(rval: AnnotatedText) -> Bool {
-        let sameThreshold = min(rval.fontSize, self.fontSize)
-        return abs(rval.y - self.y) <= sameThreshold
+    public func isSameLine(rval: AnnotatedText) -> Bool {
+        let minFontHeight = min(rval.fontHeight, self.fontHeight)
+        return abs(rval.horizontalPosition - self.horizontalPosition) <= minFontHeight
     }
 }
