@@ -12,9 +12,7 @@ import Foundation
 public struct AnnotatedText {
     let rect: [Point]
     let text: String
-    let isPrice: Bool
     private let sameThreshold = 10
-    private let priceSymbols = ["円", "￥"]
     
     var y: Int {
         get {
@@ -25,7 +23,6 @@ public struct AnnotatedText {
     init(rect: [Point], text: String) {
         self.rect = rect
         self.text = text
-        self.isPrice = self.priceSymbols.map{ text.contains($0) }.contains(true)
     }
 
     // テキスト領域の高さ中心が閾値の範囲で一致していたら同じ行だと判断する
