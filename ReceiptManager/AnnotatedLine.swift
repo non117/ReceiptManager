@@ -9,7 +9,7 @@
 import Foundation
 
 // RawLineとかにかえたい
-public class AnnotatedLine : NSObject {
+public struct AnnotatedLine {
     let texts: [AnnotatedText]
     
     init(texts: [AnnotatedText]) {
