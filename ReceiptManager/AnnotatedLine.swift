@@ -11,8 +11,22 @@ import Foundation
 // RawLineとかにかえたい
 public struct AnnotatedLine {
     let texts: [AnnotatedText]
+    let words: [String]
     
     init(texts: [AnnotatedText]) {
         self.texts = texts
+        self.words = TextConvertService.splitToWords(texts: texts)
     }
+    
+    // price, product, date, storeプロパティ, nilをかえすことも, maybeであるべき？
+
+    
+    func includesPrice() {
+        
+    }
+    
+    func includesDate() {
+        
+    }
+    // そのうち店の名前判定を辞書をもとにおこないたい
 }
