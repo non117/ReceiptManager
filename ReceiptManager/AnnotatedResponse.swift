@@ -9,7 +9,9 @@
 import Foundation
 import Himotoki
 
-public struct Point: Decodable {
+// こいつらこのクラスにあっていいのか
+// 1 struct 1 fileでなくてもよいのか
+public struct Point: Decodable, Comparable {
     let x, y: Int
 
     // MARK: Decodable
@@ -18,6 +20,14 @@ public struct Point: Decodable {
             x: e <| "x",
             y: e <| "y"
         )
+    }
+    
+    public static func < (lhs: Point, rhs: Point) -> Bool {
+        return lhs.x < rhs.x && lhs.y < rhs.y
+    }
+    
+    public static func == (lhs: Point, rhs: Point) -> Bool {
+        return lhs.x == rhs.x && lhs.y == rhs.y
     }
 }
 
