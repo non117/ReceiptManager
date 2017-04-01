@@ -8,28 +8,28 @@
 
 import Foundation
 
-public class AnnotatedText : NSObject {
-    var rect: [Point]
-    dynamic var text: String?
-    dynamic var category: String?
-    var available : Bool
+// なまえをかえたいRawTextとかに
+public struct AnnotatedText {
+    let rect: [Point]
+    let text: String
+    let isPrice: Bool
     private let sameThreshold = 10
+    private let priceSymbols = ["円", "￥"]
+    
+    var y: Int {
+        get {
+            return (self.rect[0].y + self.rect[3].y) / 2
+        }
+    }
 
     init(rect: [Point], text: String) {
         self.rect = rect
         self.text = text
-        self.category = nil
-        self.available = false
+        self.isPrice = self.priceSymbols.map{ text.contains($0) }.contains(true)
     }
 
-    // テキスト領域の高さ中心か幅が閾値の範囲で一致していたら同じ行だと判断する
-    func isSameCol(rval: AnnotatedText) -> Bool {
-        let rvalCenter = (rval.rect[0].y + rval.rect[3].y)/2
-        let lvalCenter = (self.rect[0].y + self.rect[3].y)/2
-        let diff = abs(lvalCenter - rvalCenter)
-        let rvalHeight = rval.rect[3].y - rval.rect[0].y
-        let lvalHeight = self.rect[3].y - self.rect[0].y
-        let heightDiff = abs(lvalHeight - rvalHeight)
-        return diff <= sameThreshold && heightDiff <= sameThreshold
+    // テキスト領域の高さ中心が閾値の範囲で一致していたら同じ行だと判断する
+    func isSameLine(rval: AnnotatedText) -> Bool {
+        return abs(rval.y - self.y) <= sameThreshold
     }
 }
