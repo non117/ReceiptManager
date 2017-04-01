@@ -19,6 +19,13 @@ public struct AnnotatedText {
             return (self.rect[0].y + self.rect[3].y) / 2
         }
     }
+    var fontSize: Int {
+        get {
+            let width = rect[1].x - rect[0].x
+            let num = text.characters.count
+            return width / num
+        }
+    }
 
     init(rect: [Point], text: String) {
         self.rect = rect
