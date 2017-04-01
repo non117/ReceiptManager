@@ -60,16 +60,16 @@ public struct TextAnnotations: Decodable {
 }
 
 public struct AnnotatedResponse: Decodable {
-    let responses: [TextAnnotations]
+    let textAnnotations: [TextAnnotations]
 
     // MARK: Decodable
     public static func decode(_ e: Extractor) throws -> AnnotatedResponse {
         return try AnnotatedResponse(
-            responses: e <|| "responses"
+            textAnnotations: e <|| "responses"
         )
     }
 
-    public func toReceipt() -> Receipt {
-        return Receipt(texts: responses[0].annotations.map { $0.toAnnotatedText() })
+    public func toAnnotatedTexts() -> [AnnotatedText] {
+        return textAnnotations[0].annotations.map { $0.toAnnotatedText() }
     }
 }
