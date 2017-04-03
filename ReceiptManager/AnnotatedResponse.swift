@@ -43,8 +43,8 @@ public struct Annotation: Decodable {
         )
     }
 
-    public func toAnnotatedText() -> AnnotatedText {
-        return AnnotatedText(rect: vertices, text: text)
+    public func toAnnotatedText() -> RawText {
+        return RawText(rect: vertices, text: text)
     }
 }
 
@@ -69,7 +69,7 @@ public struct AnnotatedResponse: Decodable {
         )
     }
 
-    public func toAnnotatedTexts() -> [AnnotatedText] {
+    public func toAnnotatedTexts() -> [RawText] {
         return textAnnotations[0].annotations.map { $0.toAnnotatedText() }
     }
 }

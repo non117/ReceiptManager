@@ -9,28 +9,28 @@
 import Foundation
 
 public struct TextConvertService {
-    public static func generateLines(texts: [AnnotatedText]) -> [AnnotatedLine] {
-        var lines: [AnnotatedLine] = []
+    public static func generateLines(texts: [RawText]) -> [RawLine] {
+        var lines: [RawLine] = []
         var tmpTexts = [texts.first!]
         var prevText = texts.first!
         for text in texts.dropFirst() {
             if (prevText.isSameLine(nextText: text)) {
                 tmpTexts.append(text)
             } else {
-                let line = AnnotatedLine(texts: tmpTexts)
+                let line = RawLine(texts: tmpTexts)
                 lines.append(line)
                 tmpTexts.removeAll()
             }
             prevText = text
         }
         if (tmpTexts.count > 0) {
-            let line = AnnotatedLine(texts: tmpTexts)
+            let line = RawLine(texts: tmpTexts)
             lines.append(line)
         }
         return lines
     }
 
-    public static func splitToWords(texts: [AnnotatedText]) -> [String] {
+    public static func splitToWords(texts: [RawText]) -> [String] {
         var words: [String] = []
         var prevText = texts.first!
         var sequenceTexts = [texts.first!]

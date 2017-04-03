@@ -1,5 +1,5 @@
 //
-//  AnnotatedText.swift
+//  RawText.swift
 //  ReceiptManager
 //
 //  Created by non on 2016/11/23.
@@ -8,8 +8,7 @@
 
 import Foundation
 
-// なまえをかえたいRawTextとかに
-public struct AnnotatedText {
+public struct RawText {
     let rect: [Point] // いるんか？
     let text: String
     let fontWidth, fontHeight: Int
@@ -24,11 +23,11 @@ public struct AnnotatedText {
         self.head = self.rect[0].x
         self.tail = self.rect[1].x
     }
-    public func isSameLine(nextText: AnnotatedText) -> Bool {
+    public func isSameLine(nextText: RawText) -> Bool {
         let minFontHeight = min(nextText.fontHeight, self.fontHeight)
         return abs(nextText.horizontalPosition - self.horizontalPosition) <= minFontHeight
     }
-    public func isSequential(nextText: AnnotatedText) -> Bool {
+    public func isSequential(nextText: RawText) -> Bool {
         let maxFontWidth = max(nextText.fontWidth, self.fontWidth)
         let spaceCount = (nextText.head - self.tail) / maxFontWidth
         return spaceCount < 0

@@ -1,5 +1,5 @@
 //
-//  AnnotatedLine.swift
+//  RawLine.swift
 //  ReceiptManager
 //
 //  Created by non on 2016/12/18.
@@ -8,12 +8,12 @@
 
 import Foundation
 
-// RawLineとかにかえたい
-public struct AnnotatedLine {
-    let texts: [AnnotatedText]
+public struct RawLine {
+    let texts: [RawText]
     let words: [String]
+    private let priceSymbols = ["円", "￥"]
     
-    init(texts: [AnnotatedText]) {
+    init(texts: [RawText]) {
         self.texts = texts
         self.words = TextConvertService.splitToWords(texts: texts)
     }
