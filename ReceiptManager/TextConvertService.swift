@@ -15,7 +15,7 @@ public struct TextConvertService {
         var tmpTexts = [texts.first!]
         var prevText = texts.first!
         for text in texts.dropFirst() {
-            if (prevText.isSameLine(nextText: text)) {
+            if prevText.isSameLine(nextText: text) {
                 tmpTexts.append(text)
             } else {
                 let line = RawLine(texts: tmpTexts)
@@ -24,7 +24,7 @@ public struct TextConvertService {
             }
             prevText = text
         }
-        if (tmpTexts.count > 0) {
+        if tmpTexts.count > 0 {
             let line = RawLine(texts: tmpTexts)
             lines.append(line)
         }
@@ -36,7 +36,7 @@ public struct TextConvertService {
         var prevText = texts.first!
         var sequenceTexts = [texts.first!]
         for text in texts.dropFirst() {
-            if (prevText.isSequential(nextText: text)) {
+            if prevText.isSequential(nextText: text) {
                 sequenceTexts.append(text)
             } else {
                 let word = sequenceTexts.map { $0.text }.joined()
@@ -45,7 +45,7 @@ public struct TextConvertService {
             }
             prevText = text
         }
-        if (sequenceTexts.count > 0) {
+        if sequenceTexts.count > 0 {
             let word = sequenceTexts.map { $0.text }.joined()
             words.append(word)
         }

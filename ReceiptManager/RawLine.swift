@@ -22,7 +22,7 @@ public struct RawLine {
     
     var product: Product? {
         get {
-            if (self.includesPrice()) {
+            if self.includesPrice() {
                 // お値段ぽいなら最後の塊が値段なはず
                 // replaceできたらwords.lastが変わっているはず
                 let lastWord = words.last!
@@ -43,7 +43,7 @@ public struct RawLine {
             let splits = lineText.components(separatedBy: symbol)
             if let lastSplit = splits.last {
                 let numCount = lastSplit.characters.filter{ $0 >= "0" && $0 <= "9" }.count
-                if (numCount > 0) {
+                if numCount > 0 {
                     return true
                 }
             }
