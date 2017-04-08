@@ -9,13 +9,17 @@
 import Foundation
 
 public struct Receipt {
-    let texts: [AnnotatedText]
-    let customer: String?
+    let lines: [RawLine]
+    let products: [Product]
     let date: Date?
+    let store: String? = nil
 
-    init(texts: [AnnotatedText]) {
-        self.texts = texts
-        self.customer = nil
-        self.date = nil
+
+    init(response: AnnotatedResponse) {
+        // 1つめのTextは全行をconcatしたものなので落としておく
+        let texts = response.toAnnotatedTexts().dropFirst().map { $0 }
+        self.lines = TextConvertService.generateLines(texts: texts)
+        self.date = self.lines.flatMap { $0.date }.first
+        self.products = self.lines.flatMap { $0.product }
     }
 }
