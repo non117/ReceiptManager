@@ -13,6 +13,8 @@ public struct RawLine {
     let lineText: String
     let words: [String]
     private let priceSymbols = ["円", "￥"]
+    private let datePattern = "(20\\d\\d-\\d\\d?-\\d\\d?)|(20\\d\\d年\\d\\d?月\\d\\d?日)"
+    private let dateFormats = ["yyyy-MM-dd", "yyyy年MM月dd日"]
     
     init(texts: [RawText]) {
         self.texts = texts
@@ -36,11 +38,24 @@ public struct RawLine {
             return nil
         }
     }
+    var date: Date? {
+        get {
+            let regex = try! NSRegularExpression(pattern: datePattern)
+            let range = NSRange(location: 0, length: lineText.characters.count)
+            if let match = regex.matches(in: lineText, range: range).first {
+                let dateString = (lineText as NSString).substring(with: match.range)
+                return parseDateString(dateString: dateString)
+                
+            }
+            return nil
+        }
+    }
     
     // ￥か円で分割されたテキストの最後の塊が数字っぽければtrue
     private func includesPrice() -> Bool {
         for symbol in priceSymbols {
             let splits = lineText.components(separatedBy: symbol)
+            // symbolで分割できたら処理される
             if let lastSplit = splits.last {
                 let numCount = lastSplit.characters.filter{ $0 >= "0" && $0 <= "9" }.count
                 if numCount > 0 {
@@ -49,6 +64,17 @@ public struct RawLine {
             }
         }
         return false
+    }
+    private func parseDateString(dateString: String) -> Date? {
+        for format in dateFormats {
+            let formatter = DateFormatter()
+            formatter.dateFormat = format
+            // パースできたほうのフォーマットで即時にDateがかえる
+            if let date = formatter.date(from: dateString) {
+                return date
+            }
+        }
+        return nil
     }
     // そのうち店の名前判定を辞書をもとにおこないたい
 }
