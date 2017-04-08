@@ -26,14 +26,11 @@ public struct RawLine {
         get {
             if self.includesPrice() {
                 // お値段ぽいなら最後の塊が値段なはず
-                // replaceできたらwords.lastが変わっているはず
                 let lastWord = words.last!
-                let priceString = priceSymbols.map { lastWord.replacingOccurrences(of: $0, with: "") }.filter { $0 != lastWord }.first!
-                if let price = Int(priceString) {
-                    // 最後以外を商品名とする
-                    let name = words.dropLast().joined()
-                    return Product(price: price, name: name)
-                }
+                let priceStrings = priceSymbols.filter{ lastWord.contains($0) }.map { lastWord.replacingOccurrences(of: $0, with: "") }
+                // 最後以外を商品名とする
+                return priceStrings.flatMap{ Int($0) }.map { Product(price: $0, name: words.dropLast().joined()) }.first
+
             }
             return nil
         }
@@ -53,28 +50,16 @@ public struct RawLine {
     
     // ￥か円で分割されたテキストの最後の塊が数字っぽければtrue
     private func includesPrice() -> Bool {
-        for symbol in priceSymbols {
-            let splits = lineText.components(separatedBy: symbol)
-            // symbolで分割できたら処理される
-            if let lastSplit = splits.last {
-                let numCount = lastSplit.characters.filter{ $0 >= "0" && $0 <= "9" }.count
-                if numCount > 0 {
-                    return true
-                }
-            }
-        }
-        return false
+        let separatedLasts = priceSymbols.map { lineText.components(separatedBy: $0) }.filter { $0.count > 1 }.flatMap { $0.last }
+        return separatedLasts.map { $0.characters.filter { $0 >= "0" && $0 <= "9" }.count > 0 }.contains(true)
     }
+
     private func parseDateString(dateString: String) -> Date? {
-        for format in dateFormats {
+        return dateFormats.map { (format: String) -> DateFormatter in
             let formatter = DateFormatter()
             formatter.dateFormat = format
-            // パースできたほうのフォーマットで即時にDateがかえる
-            if let date = formatter.date(from: dateString) {
-                return date
-            }
-        }
-        return nil
+            return formatter
+        }.flatMap { $0.date(from: dateString) }.first
     }
     // そのうち店の名前判定を辞書をもとにおこないたい
 }
