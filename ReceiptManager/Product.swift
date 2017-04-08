@@ -11,5 +11,5 @@ import Foundation
 public struct Product {
     let price: Int
     let name: String
-    let account: Account
+    let account: Account? = nil
 }
