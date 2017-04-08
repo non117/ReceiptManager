@@ -9,6 +9,7 @@
 import Foundation
 
 public struct TextConvertService {
+    // フォントの高さをもとに同じ行の文字を集める処理
     public static func generateLines(texts: [RawText]) -> [RawLine] {
         var lines: [RawLine] = []
         var tmpTexts = [texts.first!]
@@ -29,7 +30,7 @@ public struct TextConvertService {
         }
         return lines
     }
-
+    // フォントの幅をもとに連続した文字かどうかを判定する処理
     public static func splitToWords(texts: [RawText]) -> [String] {
         var words: [String] = []
         var prevText = texts.first!
