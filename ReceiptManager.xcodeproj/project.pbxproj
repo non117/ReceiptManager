@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		3122DAC46B2260B4A368048C /* Pods_ReceiptManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FF3B7A7ECC14841D8098052 /* Pods_ReceiptManager.framework */; };
 		F847CBE51E9005ED00FDC557 /* TextConvertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F847CBE41E9005ED00FDC557 /* TextConvertService.swift */; };
-		F847CBE71E927CAF00FDC557 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = F847CBE61E927CAF00FDC557 /* Product.swift */; };
+		F847CBE71E927CAF00FDC557 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = F847CBE61E927CAF00FDC557 /* Item.swift */; };
 		F847CBE91E9284F000FDC557 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = F847CBE81E9284F000FDC557 /* Account.swift */; };
 		F85D4B081E06B2D800E6A237 /* RawLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85D4B071E06B2D800E6A237 /* RawLine.swift */; };
 		F86C6AB61DABBE6A005F48B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86C6AB51DABBE6A005F48B1 /* AppDelegate.swift */; };
@@ -27,7 +27,7 @@
 		244A42859B656044E0B42F3F /* Pods-ReceiptManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReceiptManager.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReceiptManager/Pods-ReceiptManager.debug.xcconfig"; sourceTree = "<group>"; };
 		CDBB04B2FF56FFE0F867A2FD /* Pods-ReceiptManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReceiptManager.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReceiptManager/Pods-ReceiptManager.release.xcconfig"; sourceTree = "<group>"; };
 		F847CBE41E9005ED00FDC557 /* TextConvertService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextConvertService.swift; sourceTree = "<group>"; };
-		F847CBE61E927CAF00FDC557 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		F847CBE61E927CAF00FDC557 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		F847CBE81E9284F000FDC557 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		F85D4B071E06B2D800E6A237 /* RawLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawLine.swift; sourceTree = "<group>"; };
 		F86C6AB21DABBE6A005F48B1 /* ReceiptManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReceiptManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,7 +103,7 @@
 				F8E906F41DEAE7B300708E6A /* OCRClient.swift */,
 				F85D4B071E06B2D800E6A237 /* RawLine.swift */,
 				F847CBE41E9005ED00FDC557 /* TextConvertService.swift */,
-				F847CBE61E927CAF00FDC557 /* Product.swift */,
+				F847CBE61E927CAF00FDC557 /* Item.swift */,
 				F847CBE81E9284F000FDC557 /* Account.swift */,
 			);
 			path = ReceiptManager;
@@ -234,7 +234,7 @@
 			files = (
 				F8E906F31DE9E6CA00708E6A /* Receipt.swift in Sources */,
 				F86C6AB81DABBE6A005F48B1 /* ViewController.swift in Sources */,
-				F847CBE71E927CAF00FDC557 /* Product.swift in Sources */,
+				F847CBE71E927CAF00FDC557 /* Item.swift in Sources */,
 				F85D4B081E06B2D800E6A237 /* RawLine.swift in Sources */,
 				F8E906F11DE5AB1A00708E6A /* RawText.swift in Sources */,
 				F847CBE91E9284F000FDC557 /* Account.swift in Sources */,

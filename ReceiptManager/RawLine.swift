@@ -19,14 +19,14 @@ public struct RawLine {
         self.lineText = texts.map{ $0.text }.joined()
     }
     
-    var product: Product? {
+    var item: Item? {
         get {
             let regex = try! NSRegularExpression(pattern: pricePattern)
             let range = NSRange(location: 0, length: lineText.characters.count)
             if let match = regex.matches(in: lineText, range: range).first {
                 let priceString = (lineText as NSString).substring(with: match.range)
                 let restString = lineText.replacingOccurrences(of: priceString, with: "")
-                return parsePriceString(priceString: priceString).map { Product(price: $0, name: restString) }
+                return parsePriceString(priceString: priceString).map { Item(price: $0, name: restString) }
 
             }
             return nil
