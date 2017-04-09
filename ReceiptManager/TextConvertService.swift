@@ -21,6 +21,7 @@ public struct TextConvertService {
                 let line = RawLine(texts: tmpTexts)
                 lines.append(line)
                 tmpTexts.removeAll()
+                tmpTexts.append(text)
             }
             prevText = text
         }
@@ -29,26 +30,5 @@ public struct TextConvertService {
             lines.append(line)
         }
         return lines
-    }
-    // フォントの幅をもとに連続した文字かどうかを判定する処理
-    public static func splitToWords(texts: [RawText]) -> [String] {
-        var words: [String] = []
-        var prevText = texts.first!
-        var sequenceTexts = [texts.first!]
-        for text in texts.dropFirst() {
-            if prevText.isSequential(nextText: text) {
-                sequenceTexts.append(text)
-            } else {
-                let word = sequenceTexts.map { $0.text }.joined()
-                words.append(word)
-                sequenceTexts.removeAll()
-            }
-            prevText = text
-        }
-        if sequenceTexts.count > 0 {
-            let word = sequenceTexts.map { $0.text }.joined()
-            words.append(word)
-        }
-        return words
     }
 }
