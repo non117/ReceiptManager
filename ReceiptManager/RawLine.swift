@@ -27,7 +27,7 @@ public struct RawLine {
             if self.includesPrice() {
                 // お値段ぽいなら最後の塊が値段なはず
                 let lastWord = words.last!
-                let priceStrings = priceSymbols.filter{ lastWord.contains($0) }.map { lastWord.replacingOccurrences(of: $0, with: "") }
+                let priceStrings = priceSymbols.filter(lastWord.contains).map { lastWord.replacingOccurrences(of: $0, with: "") }
                 // 最後以外を商品名とする
                 return priceStrings.flatMap{ Int($0) }.map { Product(price: $0, name: words.dropLast().joined()) }.first
 
