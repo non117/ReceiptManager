@@ -26,7 +26,7 @@ public struct RawLine {
             if let match = regex.matches(in: lineText, range: range).first {
                 let priceString = (lineText as NSString).substring(with: match.range)
                 let restString = lineText.replacingOccurrences(of: priceString, with: "")
-                return parsePriceString(priceString: priceString).map { Item(price: $0, name: restString) }
+                return parsePriceString(priceString: priceString).map { Item(price: $0, name: restString, valid: false) }
 
             }
             return nil
