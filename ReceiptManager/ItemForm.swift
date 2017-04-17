@@ -9,9 +9,9 @@
 import Foundation
 
 public class ItemForm : NSObject {
-    let price: Int
-    let name: String
-    let valid: Bool
+    var price: Int
+    var name: String
+    var valid: Bool
     let account: Account?
     init(item: Item) {
         self.price = item.price

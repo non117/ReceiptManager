@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -731,15 +731,12 @@
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                        <connections>
+                                                                            <binding destination="F7e-E6-Tie" name="value" keyPath="objectValue.name" id="UBe-Og-KFj"/>
+                                                                        </connections>
                                                                     </textFieldCell>
-                                                                    <connections>
-                                                                        <binding destination="F7e-E6-Tie" name="value" keyPath="objectValue.text" id="WaE-J8-RYe"/>
-                                                                    </connections>
                                                                 </textField>
                                                             </subviews>
-                                                            <connections>
-                                                                <outlet property="textField" destination="xcv-3d-7AG" id="HU1-cC-I64"/>
-                                                            </connections>
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
@@ -767,6 +764,9 @@
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                        <connections>
+                                                                            <binding destination="Vsn-hQ-tpu" name="value" keyPath="objectValue.price" id="Pe9-jn-XID"/>
+                                                                        </connections>
                                                                     </textFieldCell>
                                                                 </textField>
                                                             </subviews>
@@ -811,7 +811,7 @@
                                                 </tableColumn>
                                             </tableColumns>
                                             <connections>
-                                                <binding destination="hEO-Mr-Yfa" name="content" keyPath="arrangedObjects" id="ywR-NO-CRy"/>
+                                                <binding destination="aPI-jV-3Xe" name="content" keyPath="selection.items" id="TVD-RF-XJ5"/>
                                             </connections>
                                         </tableView>
                                     </subviews>
@@ -839,11 +839,11 @@
                     </view>
                     <connections>
                         <outlet property="imageView" destination="lab-IH-EAO" id="nHK-jW-6Dl"/>
-                        <outlet property="receiptController" destination="hEO-Mr-Yfa" id="fs6-9y-Bf8"/>
+                        <outlet property="receiptController" destination="aPI-jV-3Xe" id="2CW-pC-lho"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <arrayController objectClassName="" id="hEO-Mr-Yfa"/>
+                <objectController id="aPI-jV-3Xe"/>
             </objects>
             <point key="canvasLocation" x="1076" y="209"/>
         </scene>
