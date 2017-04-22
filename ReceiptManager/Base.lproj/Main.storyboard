@@ -757,22 +757,19 @@
                                                             <rect key="frame" x="71" y="1" width="105" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L5v-Z3-1xe">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="105" height="17"/>
-                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="uQm-a1-Acf">
+                                                                <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0mt-21-ZNT">
+                                                                    <rect key="frame" x="19" y="-2" width="67" height="22"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="w3A-un-IkA">
                                                                         <font key="font" metaFont="system"/>
-                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                        <connections>
-                                                                            <binding destination="Vsn-hQ-tpu" name="value" keyPath="objectValue.price" id="Pe9-jn-XID"/>
-                                                                        </connections>
+                                                                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
+                                                                    <connections>
+                                                                        <binding destination="Vsn-hQ-tpu" name="value" keyPath="objectValue.price" id="i3o-ms-EN6"/>
+                                                                    </connections>
                                                                 </textField>
                                                             </subviews>
-                                                            <connections>
-                                                                <outlet property="textField" destination="L5v-Z3-1xe" id="FRA-pA-md6"/>
-                                                            </connections>
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
@@ -793,19 +790,18 @@
                                                             <rect key="frame" x="179" y="1" width="105" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B3s-8R-Ry2">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="105" height="17"/>
-                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="84A-15-M5b">
+                                                                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eNv-7V-2IB">
+                                                                    <rect key="frame" x="22" y="0.0" width="61" height="18"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                    <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="WaX-v0-znP">
+                                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                         <font key="font" metaFont="system"/>
-                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                    </textFieldCell>
-                                                                </textField>
+                                                                    </buttonCell>
+                                                                    <connections>
+                                                                        <binding destination="uvO-Qd-AQe" name="value" keyPath="objectValue.valid" id="cnt-bW-rz1"/>
+                                                                    </connections>
+                                                                </button>
                                                             </subviews>
-                                                            <connections>
-                                                                <outlet property="textField" destination="B3s-8R-Ry2" id="f4o-oO-pYA"/>
-                                                            </connections>
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
