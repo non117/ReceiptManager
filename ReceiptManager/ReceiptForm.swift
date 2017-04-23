@@ -12,12 +12,41 @@ import Foundation
 // validationは分離してもよいかもしれない
 public class ReceiptForm : NSObject {
     let items: [ItemForm]
-    let sum: Int?
+    dynamic var sumIsValid = false
+    dynamic var estimatedSum = 0
+    dynamic var checkedSum = 0
     let date: Date?
 
     init(receipt: Receipt) {
         self.items = receipt.items.map { ItemForm(item: $0) }
-        self.sum = receipt.sumItem?.price
+        if let sumItem = receipt.sumItem {
+            self.estimatedSum = sumItem.price
+        }
         self.date = receipt.date
+        super.init()
+        checkSum()
+        // itemsの監視など
+        items.forEach {
+            $0.addObserver(self, forKeyPath: "valid", context: nil)
+            $0.addObserver(self, forKeyPath: "price", context: nil)
+        }
+    }
+    
+    deinit {
+        self.removeObserver(self, forKeyPath: "valid")
+        self.removeObserver(self, forKeyPath: "price")
+    }
+    
+    public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        checkSum()
+    }
+    
+    func checkSum() {
+        checkedSum = items.filter{ $0.valid }.map{ $0.price }.reduce(0, +)
+        if (estimatedSum == 0 || checkedSum == 0) {
+            sumIsValid = false
+        } else {
+            sumIsValid = estimatedSum == checkedSum
+        }
     }
 }
