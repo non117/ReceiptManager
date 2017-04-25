@@ -13,7 +13,7 @@ class ViewController: NSViewController {
     @IBOutlet weak var imageView: NSImageView!
     @IBOutlet var receiptController: NSObjectController!
     var receiptForm: ReceiptForm!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.testDataLoad()

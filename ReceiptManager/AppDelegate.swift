@@ -10,7 +10,10 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
+    override init() {
+        ValueTransformer.setValueTransformer(CheckEmojiTransformer(), forName: NSValueTransformerName(rawValue: "CheckEmojiTransformer"))
+        super.init()
+    }
 
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
