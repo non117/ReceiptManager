@@ -20,6 +20,8 @@
 		F86C6ABD1DABBE6A005F48B1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F86C6ABB1DABBE6A005F48B1 /* Main.storyboard */; };
 		F87CDEB11DC08E5400796960 /* AnnotatedResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87CDEB01DC08E5400796960 /* AnnotatedResponse.swift */; };
 		F8E69F9D1EAF8D6C0012BF8E /* CheckEmojiTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E69F9C1EAF8D6C0012BF8E /* CheckEmojiTransformer.swift */; };
+		F8E69F9F1EB0D7510012BF8E /* ReceiptList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E69F9E1EB0D7510012BF8E /* ReceiptList.swift */; };
+		F8E69FA11EB0D8220012BF8E /* ReceiptImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E69FA01EB0D8220012BF8E /* ReceiptImage.swift */; };
 		F8E906F11DE5AB1A00708E6A /* RawText.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E906F01DE5AB1A00708E6A /* RawText.swift */; };
 		F8E906F31DE9E6CA00708E6A /* Receipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E906F21DE9E6CA00708E6A /* Receipt.swift */; };
 		F8E906F51DEAE7B300708E6A /* OCRClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E906F41DEAE7B300708E6A /* OCRClient.swift */; };
@@ -43,6 +45,8 @@
 		F86C6ABE1DABBE6A005F48B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F87CDEB01DC08E5400796960 /* AnnotatedResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotatedResponse.swift; sourceTree = "<group>"; };
 		F8E69F9C1EAF8D6C0012BF8E /* CheckEmojiTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckEmojiTransformer.swift; sourceTree = "<group>"; };
+		F8E69F9E1EB0D7510012BF8E /* ReceiptList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptList.swift; sourceTree = "<group>"; };
+		F8E69FA01EB0D8220012BF8E /* ReceiptImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptImage.swift; sourceTree = "<group>"; };
 		F8E906F01DE5AB1A00708E6A /* RawText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawText.swift; sourceTree = "<group>"; };
 		F8E906F21DE9E6CA00708E6A /* Receipt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Receipt.swift; sourceTree = "<group>"; };
 		F8E906F41DEAE7B300708E6A /* OCRClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OCRClient.swift; sourceTree = "<group>"; };
@@ -114,6 +118,8 @@
 				F847CBE61E927CAF00FDC557 /* Item.swift */,
 				F847CBEC1EA3993000FDC557 /* ItemForm.swift */,
 				F847CBE81E9284F000FDC557 /* Account.swift */,
+				F8E69F9E1EB0D7510012BF8E /* ReceiptList.swift */,
+				F8E69FA01EB0D8220012BF8E /* ReceiptImage.swift */,
 			);
 			path = ReceiptManager;
 			sourceTree = "<group>";
@@ -245,7 +251,9 @@
 				F8E906F31DE9E6CA00708E6A /* Receipt.swift in Sources */,
 				F86C6AB81DABBE6A005F48B1 /* ViewController.swift in Sources */,
 				F8E69F9D1EAF8D6C0012BF8E /* CheckEmojiTransformer.swift in Sources */,
+				F8E69F9F1EB0D7510012BF8E /* ReceiptList.swift in Sources */,
 				F847CBE71E927CAF00FDC557 /* Item.swift in Sources */,
+				F8E69FA11EB0D8220012BF8E /* ReceiptImage.swift in Sources */,
 				F85D4B081E06B2D800E6A237 /* RawLine.swift in Sources */,
 				F8E906F11DE5AB1A00708E6A /* RawText.swift in Sources */,
 				F847CBE91E9284F000FDC557 /* Account.swift in Sources */,
