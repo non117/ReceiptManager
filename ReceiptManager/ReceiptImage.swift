@@ -7,11 +7,18 @@
 //
 
 import Foundation
+import Cocoa
 
 public struct ReceiptImage {
-    let path: URL
+    public let path: URL
     
     init(path: URL) {
         self.path = path
+    }
+    
+    var image: NSImage? {
+        get {
+            return NSImage(contentsOf: path)
+        }
     }
 }
