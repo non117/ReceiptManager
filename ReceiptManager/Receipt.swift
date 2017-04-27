@@ -10,8 +10,8 @@ import Foundation
 import Cocoa
 
 public struct Receipt {
-    let imagePath: URL
-    let text: ReceiptText?
+    public var text: ReceiptText? = nil
+    public let imagePath: URL
     
     init(imagePath: URL) {
         self.imagePath = imagePath

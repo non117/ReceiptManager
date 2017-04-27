@@ -9,11 +9,13 @@
 import Foundation
 
 public struct ReceiptList {
-    let images: [ReceiptImage]
-    let receipts: [Receipt] = []
+    let receipts: [Receipt]
     let currentIndex: Int = 0
+    let client: OCRClient
     
-    init(urls: [URL]) {
-        self.images = urls.map { ReceiptImage(path: $0) }        
+    init(urls: [URL], apiKey: String) {
+        self.receipts = urls.map { Receipt(imagePath: $0) }
+        self.client = OCRClient(apiKey: apiKey)
+    }
     }
 }
