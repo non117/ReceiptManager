@@ -17,12 +17,12 @@ public class ReceiptForm : NSObject {
     dynamic var checkedSum = 0
     let date: Date?
 
-    init(receipt: Receipt) {
-        self.items = receipt.items.map { ItemForm(item: $0) }
-        if let sumItem = receipt.sumItem {
+    init(receiptText: ReceiptText) {
+        self.items = receiptText.items.map { ItemForm(item: $0) }
+        if let sumItem = receiptText.sumItem {
             self.estimatedSum = sumItem.price
         }
-        self.date = receipt.date
+        self.date = receiptText.date
         super.init()
         checkSum()
         // itemsの監視など
