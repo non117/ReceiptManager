@@ -40,10 +40,10 @@ public struct OCRClient {
         request.httpMethod = "POST"
         request.httpBody = try? JSONSerialization.data(withJSONObject: parameters)
 
-        let task = session.dataTask(with: request, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) in
-            if data != nil {
-                let jsonData = try? JSONSerialization.jsonObject(with: data!)
-                let annotatedResponse = try? AnnotatedResponse.decodeValue(jsonData)
+        let task = session.dataTask(with: request, completionHandler: { (body: Data?, response: URLResponse?, error: Error?) in
+            if let data = body {
+                let jsonData = try? JSONSerialization.jsonObject(with: data)
+                let annotatedResponse = try? AnnotatedResponse.decodeValue(jsonData!)
                 responseHandler(annotatedResponse)
             }
             self.session.invalidateAndCancel()
