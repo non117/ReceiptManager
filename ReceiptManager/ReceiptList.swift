@@ -17,6 +17,9 @@ public class ReceiptList {
     init(urls: [URL], apiKey: String) {
         self.receipts = urls.map { Receipt(imagePath: $0) }
         self.client = OCRClient(apiKey: apiKey)
+        for index in 0..<(ReceiptList.prefetchNum + 1) {
+            applyOcrByIndex(index: index)
+        }
     }
     
     func getCurrent() -> Receipt? {
@@ -31,13 +34,11 @@ public class ReceiptList {
     }
     
     func prefetch() {
-        let prefetchIndex = currentIndex + ReceiptList.prefetchNum
-        if prefetchIndex < receipts.count {
-            applyOcrByIndex(index: currentIndex + ReceiptList.prefetchNum)
-        }
+        applyOcrByIndex(index: currentIndex + ReceiptList.prefetchNum)
     }
     
     private func applyOcrByIndex(index: Int) {
+        if index >= receipts.count { return }
         var receipt = receipts[index]
         DispatchQueue.global(qos: .default).async {
             self.client.annotate(imagePath: receipt.imagePath) {(res: AnnotatedResponse?) in
