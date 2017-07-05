@@ -40,6 +40,7 @@ class ViewController: NSViewController {
             self.imageView.image = receipt.image
             if let text = receipt.text {
                 self.receiptForm = ReceiptForm(receiptText: text)
+                self.receiptController.content = self.receiptForm
             }
             receipts.prefetch()
         } else {
