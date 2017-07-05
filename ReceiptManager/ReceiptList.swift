@@ -9,6 +9,7 @@
 import Foundation
 
 public class ReceiptList {
+    static let prefetchNum = 3
     var receipts: [Receipt]
     var currentIndex: Int = 0
     let client: OCRClient
@@ -18,7 +19,25 @@ public class ReceiptList {
         self.client = OCRClient(apiKey: apiKey)
     }
     
-    func applyOcrByIndex(index: Int) {
+    func getCurrent() -> Receipt? {
+        if currentIndex < receipts.count {
+            return receipts[currentIndex]
+        }
+        return nil
+    }
+    
+    func moveNext() {
+        self.currentIndex += 1
+    }
+    
+    func prefetch() {
+        let prefetchIndex = currentIndex + ReceiptList.prefetchNum
+        if prefetchIndex < receipts.count {
+            applyOcrByIndex(index: currentIndex + ReceiptList.prefetchNum)
+        }
+    }
+    
+    private func applyOcrByIndex(index: Int) {
         var receipt = receipts[index]
         DispatchQueue.global(qos: .default).async {
             self.client.annotate(imagePath: receipt.imagePath) {(res: AnnotatedResponse?) in

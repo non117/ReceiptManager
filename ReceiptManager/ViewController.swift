@@ -13,10 +13,20 @@ class ViewController: NSViewController {
     @IBOutlet weak var imageView: NSImageView!
     @IBOutlet var receiptController: NSObjectController!
     var receiptForm: ReceiptForm!
+    static let apiKey = ""
+    static let directoryPath = "/Users/non/Desktop/receipt"
+    var receipts: ReceiptList = ReceiptList(
+        urls: directoryContents(directory: directoryPath).map { URL(fileURLWithPath: directoryPath + "/" + $0) },
+        apiKey: apiKey)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.testDataLoad()
+        loadAndPrefetch()
+    }
+
+    @IBAction func nextButtonClicked(_ sender: Any) {
+        receipts.moveNext()
+        loadAndPrefetch()
     }
 
     override var representedObject: Any? {
@@ -25,27 +35,23 @@ class ViewController: NSViewController {
         }
     }
     
-    private func testDataLoad() {
-        let imagePath = URL(fileURLWithPath: "/Users/non/Desktop/IMG_0001.JPG")
-        self.imageView.image = NSImage(contentsOf: imagePath)
-        
-        //let client = OCRClient(apiKey: "")
-        //client.annotate(imagePath: imagePath, responseHandler: {(res: AnnotatedResponse?) in
-        //    let receipt = Receipt(response: res!)
-        //    self.receiptForm = ReceiptForm(receipt: receipt)
-        //    self.receiptController.content = self.receiptForm
-        //})
-        let testJson = URL(fileURLWithPath: "/Users/non/Desktop/working/res.json")
-        guard let res = try? Data(contentsOf: testJson) else {
-            return
+    func loadAndPrefetch() {
+        if let receipt = receipts.getCurrent() {
+            self.imageView.image = receipt.image
+            if let text = receipt.text {
+                self.receiptForm = ReceiptForm(receiptText: text)
+            }
+            receipts.prefetch()
+        } else {
+            // 終了処理
         }
-        let jsonData = try? JSONSerialization.jsonObject(with: res)
-        guard let annotatedResponse = try? AnnotatedResponse.decodeValue(jsonData) else {
-            return
-        }
-        let receipt = Receipt(response: annotatedResponse)
-        self.receiptForm = ReceiptForm(receipt: receipt)
-        self.receiptController.content = self.receiptForm
     }
 }
 
+func directoryContents(directory: String) -> [String] {
+    do {
+        return try FileManager.default.contentsOfDirectory(atPath: directory)
+    } catch {
+        return []
+    }
+}
