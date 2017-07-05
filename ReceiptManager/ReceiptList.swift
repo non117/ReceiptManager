@@ -40,7 +40,7 @@ public class ReceiptList {
     private func applyOcrByIndex(index: Int) {
         if index >= receipts.count { return }
         var receipt = receipts[index]
-        DispatchQueue.global(qos: .default).async {
+        DispatchQueue.global().async {
             self.client.annotate(imagePath: receipt.imagePath) {(res: AnnotatedResponse?) in
                 if let response = res {
                     receipt.text = ReceiptText(response: response)
