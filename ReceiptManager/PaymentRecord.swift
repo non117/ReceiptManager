@@ -12,7 +12,7 @@ public struct PaymentRecord {
     let date: Date
     let price: Int
     let name: String
-    let account: Account
+    let account: Account?
     
     func toJSON() -> [String: Any] {
         var dictionary: [String: Any] = [:]

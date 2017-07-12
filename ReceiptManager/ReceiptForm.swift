@@ -49,4 +49,12 @@ public class ReceiptForm : NSObject {
             sumIsValid = estimatedSum == checkedSum
         }
     }
+    
+    func getPaymentRecords() -> [PaymentRecord] {
+        guard let date = self.date else { return [] }
+        let checkedItems = items.filter { $0.valid }
+        return checkedItems.map { item in
+            return PaymentRecord(date: date, price: item.price, name: item.name, account: item.account)
+        }
+    }
 }
