@@ -38,6 +38,13 @@ public class ReceiptList {
         applyOcrByIndex(index: currentIndex + ReceiptList.prefetchNum)
     }
     
+    func setRecords(records: [PaymentRecord]) {
+        if var receipt = getCurrent() {
+            receipt.records = records
+            receipts[currentIndex] = receipt
+        }
+    }
+    
     private func applyOcrByIndex(index: Int) {
         if index >= receipts.count { return }
         var receipt = receipts[index]

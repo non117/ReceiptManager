@@ -26,6 +26,7 @@ class ViewController: NSViewController {
     }
 
     @IBAction func nextButtonClicked(_ sender: Any) {
+        storeRecords()
         receipts.moveNext()
         loadAndPrefetch()
     }
@@ -55,6 +56,10 @@ class ViewController: NSViewController {
         } else {
             // 終了処理
         }
+    }
+    
+    func storeRecords() {
+        receipts.setRecords(records: receiptForm.getPaymentRecords())
     }
 }
 

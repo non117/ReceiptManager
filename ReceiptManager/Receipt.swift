@@ -12,6 +12,7 @@ import Cocoa
 public struct Receipt {
     public var text: ReceiptText? = nil
     public let imagePath: URL
+    public var records: [PaymentRecord] = []
     
     init(imagePath: URL) {
         self.imagePath = imagePath
