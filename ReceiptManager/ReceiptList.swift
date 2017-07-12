@@ -12,6 +12,7 @@ public class ReceiptList {
     static let prefetchNum = 3
     var receipts: [Receipt]
     var currentIndex: Int = 0
+    var loaded = false
     let client: OCRClient
     
     init(urls: [URL], apiKey: String) {
@@ -45,6 +46,7 @@ public class ReceiptList {
                 if let response = res {
                     receipt.text = ReceiptText(response: response)
                     self.receipts[index] = receipt
+                    self.loaded = true
                 }
             }
         }

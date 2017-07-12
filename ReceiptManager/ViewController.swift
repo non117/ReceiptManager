@@ -21,6 +21,7 @@ class ViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        waitUntilLoaded()
         loadAndPrefetch()
     }
 
@@ -32,6 +33,14 @@ class ViewController: NSViewController {
     override var representedObject: Any? {
         didSet {
         // Update the view, if already loaded.
+        }
+    }
+    
+    func waitUntilLoaded() {
+        var wait = 0.5
+        while(!self.receipts.loaded) {
+            Thread.sleep(forTimeInterval: wait)
+            wait = wait * 2
         }
     }
     
