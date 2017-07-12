@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct OCRClient {
+public class OCRClient {
     static let HOST = "https://vision.googleapis.com"
     static let ANNOTATE_API = "/v1/images:annotate"
     let apiKey: String
@@ -17,6 +17,10 @@ public struct OCRClient {
     init(apiKey: String){
         self.apiKey = apiKey
         self.session = URLSession(configuration: URLSessionConfiguration.default)
+    }
+    
+    deinit {
+        self.session.invalidateAndCancel()
     }
 
     // MARK: - main request method
@@ -46,7 +50,6 @@ public struct OCRClient {
                 let annotatedResponse = try? AnnotatedResponse.decodeValue(jsonData!)
                 responseHandler(annotatedResponse)
             }
-            self.session.invalidateAndCancel()
         })
         task.resume()
     }
